@@ -1,0 +1,24 @@
+enum Role {
+  ADMIN
+  USER
+  GUEST
+}
+
+type Query {
+  allUsers: [User]
+}
+
+type User {
+  id: ID!
+  name: String!
+  ssn: String!
+  password: String!
+  email: String!
+  role: Role! 
+}
+
+type Mutation {
+  register(name: String!, ssn: String!, password: String!, email: String!, role: Role!): User
+  updateUser(id: ID!, name: String, ssn: String, password: String, email: String, role: Role): User
+  deleteUser(id: ID!): Boolean
+}

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flotasql
+spec:
+  selector:
+    matchLabels:
+      app: flotasql
+  template:
+    metadata:
+      labels:
+        app: flotasql
+    spec:
+      containers:
+        - name: flotasql
+          image: flotasql
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+
+              value: "jdbc:postgresql://postgres-service:5432/flotas_db"
+
+            - name: SPRING_DATASOURCE_USERNAME
+
+              value: root
+
+            - name: SPRING_DATASOURCE_PASSWORD
+
+              value: "1234"
+
+  replicas: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flotas-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: flotasql
+  type: LoadBalancer
