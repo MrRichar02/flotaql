@@ -5,6 +5,7 @@ metadata:
   labels:
     app: prometheus
 data:
+  #Nota: cambiar el target para el que genere minikube para el servicio de flotas-service
   prometheus.yml: |
     global:
       scrape_interval: 15s
