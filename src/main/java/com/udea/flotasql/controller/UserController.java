@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import com.udea.flotasql.entity.Role;
 import com.udea.flotasql.entity.User;
 import com.udea.flotasql.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 public class UserController {
   private final UserService userService;
